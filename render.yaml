@@ -30,8 +30,9 @@ services:
         sync: false
       - key: FRONTEND_URL
         fromService:
+          type: web
           name: agri-rental-frontend
-          property: url
+          property: host
 
   # Frontend Service
   - type: web
@@ -43,5 +44,6 @@ services:
     envVars:
       - key: VITE_API_BASE_URL
         fromService:
+          type: web
           name: agri-rental-backend
-          property: url
+          property: host

@@ -1,5 +1,7 @@
 # Agricultural Equipment Rental Platform
 
+[![Deployed on Render](https://render.com/images/server-anchor-url.svg)](https://render.com)
+
 A MERN stack platform connecting farmers with equipment owners through transparent, digital rental and service booking.
 
 ## Project Structure
@@ -7,7 +9,8 @@ A MERN stack platform connecting farmers with equipment owners through transpare
 ```
 PCCOE_hackathon/
 ├── backend/          # Node.js + Express backend
-└── frontend/         # React + Vite frontend
+├── frontend/         # React + Vite frontend
+└── render.yaml       # Render Infrastructure as Code (IaC)
 ```
 
 ## Features
@@ -15,63 +18,71 @@ PCCOE_hackathon/
 - **Role-based Authentication** (Farmer, Owner, Admin)
 - **Equipment Rental** (Slot-based booking)
 - **Service Booking** (Time-based with operator)
+- **Real-time Availability**
 - **Owner Verification** (Admin-approved)
-- **Payment Integration** (Razorpay test mode)
-- **Evidence-based Tracking** (Photos, GPS, meter readings)
-- **Dispute Resolution** (Admin-mediated)
-- **Ratings & Reviews**
+- **Secure Payments** (Razorpay integration)
+- **Dispute Resolution System**
+- **Responsive Design**
 
 ## Tech Stack
 
 ### Backend
-- Node.js + Express.js
-- MongoDB + Mongoose
-- JWT Authentication
-- Cloudinary (Image uploads)
-- Razorpay (Payments)
+- **Runtime**: Node.js
+- **Framework**: Express.js
+- **Database**: MongoDB + Mongoose
+- **Auth**: JWT & bcrypt
+- **Storage**: Cloudinary
+- **Payments**: Razorpay
 
 ### Frontend
-- React.js (Vite)
-- React Router
-- Axios
-- Context API
+- **Framework**: React.js (Vite)
+- **Styling**: Tailwind CSS
+- **Routing**: React Router DOM v6
+- **HTTP Client**: Axios
 
 ## Getting Started
 
 ### Prerequisites
 - Node.js (v18+)
-- MongoDB (local or Atlas)
-- npm or yarn
+- MongoDB connection string
+- Cloudinary account
+- Razorpay test account
 
-### Backend Setup
+### Local Development
 
-```bash
-cd backend
-npm install
-cp .env.example .env
-# Edit .env with your credentials
-npm run dev
-```
+1.  **Clone the repository**
+    ```bash
+    git clone <your-repo-url>
+    cd PCCOE_hackathon
+    ```
 
-### Frontend Setup
+2.  **Backend Setup**
+    ```bash
+    cd backend
+    npm install
+    cp .env.example .env
+    # Update .env with your credentials
+    npm run dev
+    ```
 
-```bash
-cd frontend
-npm install
-cp .env.example .env
-# Edit .env with your API URL
-npm run dev
-```
+3.  **Frontend Setup**
+    ```bash
+    cd frontend
+    npm install
+    # Update .env with VITE_API_BASE_URL=http://localhost:5000/api
+    npm run dev
+    ```
 
-## Environment Variables
+## Deployment
 
-See `.env.example` files in both backend and frontend directories.
+This project is configured for seamless deployment on **Render**.
 
-## Documentation
+See [deployment_guide.md](./deployment_guide.md) for detailed instructions.
 
-- Architecture: See planning documents in `.gemini/antigravity/brain/` folder
-- API Endpoints: Documented in architecture.md
-- Database Schema: Documented in architecture.md
+### Quick Deploy
+1. Push your code to GitHub.
+2. Link your repo to Render.
+3. Use the `render.yaml` Blueprint.
 
 ## License
 

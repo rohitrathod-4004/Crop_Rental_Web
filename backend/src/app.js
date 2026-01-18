@@ -10,7 +10,15 @@ app.use(helmet());
 
 // CORS configuration
 app.use(cors({
-  origin: process.env.FRONTEND_URL || 'http://localhost:5173',
+  origin: (origin, callback) => {
+    const allowed = process.env.FRONTEND_URL || 'http://localhost:5173';
+    // Allow if origin matches allowed check (handling potential missing protocol in env)
+    if (!origin || origin === allowed || origin === `https://${allowed}` || allowed.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true
 }));
 

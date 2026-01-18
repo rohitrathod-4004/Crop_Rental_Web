@@ -45,6 +45,15 @@ app.get('/health', (req, res) => {
   });
 });
 
+// Root route
+app.get('/', (req, res) => {
+  res.status(200).json({
+    success: true,
+    message: 'Welcome to Agri Rental API. Usage: /api/v1/resource',
+    docs: 'Check /health for system status'
+  });
+});
+
 // API routes
 const authRoutes = require('./routes/authRoutes');
 const adminRoutes = require('./routes/adminRoutes');

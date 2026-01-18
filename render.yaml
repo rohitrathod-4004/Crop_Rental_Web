@@ -34,8 +34,9 @@ services:
           property: url
 
   # Frontend Service
-  - type: static
+  - type: web
     name: agri-rental-frontend
+    env: static
     rootDir: frontend
     buildCommand: npm install && npm run build
     staticPublishPath: ./dist

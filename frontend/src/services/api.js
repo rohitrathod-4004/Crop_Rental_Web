@@ -2,9 +2,22 @@ import axios from 'axios';
 
 // Create axios instance with base configuration
 const api = axios.create({
-  baseURL: (import.meta.env.VITE_API_BASE_URL?.startsWith('http') 
-    ? import.meta.env.VITE_API_BASE_URL 
-    : `https://${import.meta.env.VITE_API_BASE_URL}`) || 'http://localhost:5000/api',
+  baseURL: (() => {
+    let url = import.meta.env.VITE_API_BASE_URL;
+    if (!url) return 'http://localhost:5000/api';
+    
+    // Add protocol if missing
+    if (!url.startsWith('http')) {
+      url = `https://${url}`;
+    }
+    
+    // Add /api suffix if missing
+    if (!url.endsWith('/api')) {
+      url = `${url}/api`;
+    }
+    
+    return url;
+  })(),
   timeout: 10000,
   headers: {
     'Content-Type': 'application/json',

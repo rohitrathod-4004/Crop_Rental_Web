@@ -29,10 +29,7 @@ services:
       - key: GOOGLE_MAPS_API_KEY
         sync: false
       - key: FRONTEND_URL
-        fromService:
-          type: web
-          name: agri-rental-frontend
-          property: host
+        value: https://agri-rental-frontend.onrender.com
 
   # Frontend Service
   - type: web
@@ -43,7 +40,4 @@ services:
     staticPublishPath: ./dist
     envVars:
       - key: VITE_API_BASE_URL
-        fromService:
-          type: web
-          name: agri-rental-backend
-          property: host
+        value: https://agri-rental-backend.onrender.com

@@ -6,6 +6,11 @@ const api = axios.create({
     let url = import.meta.env.VITE_API_BASE_URL;
     if (!url) return 'http://localhost:5000/api';
     
+    // Fix for Render internal hostname issue
+    if (url.includes('agri-rental-backend') && !url.includes('.onrender.com')) {
+      url = 'https://agri-rental-backend.onrender.com';
+    }
+
     // Add protocol if missing
     if (!url.startsWith('http')) {
       url = `https://${url}`;
@@ -16,6 +21,7 @@ const api = axios.create({
       url = `${url}/api`;
     }
     
+    console.log('API Base URL:', url); // Debugging log
     return url;
   })(),
   timeout: 10000,
